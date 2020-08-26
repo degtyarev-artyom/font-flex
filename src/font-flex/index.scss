@@ -1,0 +1,46 @@
+@mixin max-width($count) {
+  @media all and (max-width: #{$count}px) {
+    @content
+  }
+}
+
+@mixin font-flex($bp1, $fz1, $bp2, $fz2) {
+  $fzDiff: $fz1 - $fz2;
+  $bpDiff: $bp1 - $bp2;
+  font-size: calc(#{$fz1}px + (#{$fzDiff}*100/#{$bpDiff})*1vw - (#{$bp1}px * #{$fzDiff}/#{$bpDiff}));
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.font-flex {
+  min-height: 100vh;
+  background: #808080;
+  color: #ffffff;
+  padding: 30px;
+  font-size: 30px;
+
+  @include max-width(1366) {
+    @include font-flex(1366, 30, 1024, 24);
+  }
+
+  @include max-width(1024) {
+    @include font-flex(1024, 24, 768, 20);
+  }
+
+  @include max-width(768) {
+    @include font-flex(768, 20, 425, 16)
+  }
+
+  @include max-width(425) {
+    font-size: 16px;
+  }
+}
