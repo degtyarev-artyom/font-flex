@@ -1,13 +1,13 @@
-@mixin max-width($count) {
-  @media all and (max-width: #{$count}px) {
+@mixin max-width($bp) {
+  @media all and (max-width: #{$bp}px) {
     @content
   }
 }
 
-@mixin font-flex($bp1, $fz1, $bp2, $fz2) {
-  $fzDiff: $fz1 - $fz2;
-  $bpDiff: $bp1 - $bp2;
-  font-size: calc(#{$fz1}px + (#{$fzDiff}*100/#{$bpDiff})*1vw - (#{$bp1}px * #{$fzDiff}/#{$bpDiff}));
+@mixin flex-prop($prop, $bp1, $val1, $bp2, $val2) {
+  $val: $val1 - $val2;
+  $bp: $bp1 - $bp2;
+  #{$prop}: calc(#{$val1}px + (#{$val}*100/#{$bp})*1vw - (#{$bp1}px * #{$val}/#{$bp}));
 }
 
 html,
@@ -25,22 +25,24 @@ body {
   min-height: 100vh;
   background: #808080;
   color: #ffffff;
-  padding: 30px;
+  padding: 100px;
   font-size: 30px;
 
   @include max-width(1366) {
-    @include font-flex(1366, 30, 1024, 24);
+    @include flex-prop('font-size',1366, 30, 1024, 24);
+    @include flex-prop('padding',1366, 100, 425, 20);
   }
 
   @include max-width(1024) {
-    @include font-flex(1024, 24, 768, 20);
+    @include flex-prop('font-size', 1024, 24, 768, 20);
   }
 
   @include max-width(768) {
-    @include font-flex(768, 20, 425, 16)
+    @include flex-prop('font-size', 768, 20, 425, 16)
   }
 
   @include max-width(425) {
     font-size: 16px;
+    padding: 20px;
   }
 }

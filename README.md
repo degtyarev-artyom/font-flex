@@ -1,18 +1,19 @@
-# font-flex
-SCSS mixin for smooth font changes with exact size at breakpoint.
+# flex-prop
+SCSS mixin  for smooth change of property value with exact size at breakpoint.
 
 ## Syntax example
 ```scss
-@mixin font-flex($bp1, $fz1, $bp2, $fz2) {
-  $fzDiff: $fz1 - $fz2;
-  $bpDiff: $bp1 - $bp2;
-  font-size: calc(#{$fz1}px + (#{$fzDiff}*100/#{$bpDiff})*1vw - (#{$bp1}px * #{$fzDiff}/#{$bpDiff}));
+@mixin flex-prop($prop, $bp1, $val1, $bp2, $val2) {
+  $val: $val1 - $val2;
+  $bp: $bp1 - $bp2;
+  #{$prop}: calc(#{$val1}px + (#{$val}*100/#{$bp})*1vw - (#{$bp1}px * #{$val}/#{$bp}));
 }
 
-@include font-flex(1024, 24, 768, 20);
+@include flex-prop('font-size', 1024, 24, 768, 20);
 ```
 ## Custom Parameters
+`$prop` property name<br>
 `$bp1` first breakpoint<br>
-`$fz1` font-size for first breakpoint<br>
+`$val1` property value for the first breakpoint<br>
 `$bp2` second breakpoint<br>
-`$fz2` font-size for second breakpoint
+`$val2` property value for the second breakpoint
