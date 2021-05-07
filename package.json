@@ -1,7 +1,7 @@
 {
-  "name": "font-flex",
+  "name": "flex-prop",
   "version": "1.0.0",
-  "description": "font-flex => sass mixin",
+  "description": "flex-prop (SCSS mixin)",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

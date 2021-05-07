@@ -8,6 +8,10 @@
   $val: $val1 - $val2;
   $bp: $bp1 - $bp2;
   #{$prop}: calc(#{$val1}px + (#{$val}*100/#{$bp})*1vw - (#{$bp1}px * #{$val}/#{$bp}));
+
+  @media all and (max-width: #{$bp2}px) {
+    #{$prop}: #{$val2}px;
+  }
 }
 
 html,
@@ -21,7 +25,7 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-.font-flex {
+.flex-prop {
   min-height: 100vh;
   background: #808080;
   color: #ffffff;
@@ -29,20 +33,17 @@ body {
   font-size: 30px;
 
   @include max-width(1366) {
-    @include flex-prop('font-size',1366, 30, 1024, 24);
-    @include flex-prop('padding',1366, 100, 425, 20);
+    @include flex-prop('font-size',1280, 30, 1024, 24);
+    @include flex-prop('padding',1280, 100, 1024, 80);
   }
 
   @include max-width(1024) {
     @include flex-prop('font-size', 1024, 24, 768, 20);
+    @include flex-prop('padding',1024, 80, 768, 50);
   }
 
   @include max-width(768) {
-    @include flex-prop('font-size', 768, 20, 425, 16)
-  }
-
-  @include max-width(425) {
-    font-size: 16px;
-    padding: 20px;
+    @include flex-prop('font-size', 768, 20, 425, 16);
+    @include flex-prop('padding',768, 50, 425, 30);
   }
 }

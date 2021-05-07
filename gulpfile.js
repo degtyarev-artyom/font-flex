@@ -6,7 +6,7 @@ const gulp_notify = require('gulp-notify');
 const gulp_plumber = require('gulp-plumber');
 
 function html() {
-  return gulp.src(`./src/font-flex/index.html`)
+  return gulp.src(`./src/flex-prop/index.html`)
     .pipe(gulp_plumber({
       errorHandler: gulp_notify.onError(function (error) {
         return {
@@ -23,7 +23,7 @@ function reload() {
 }
 
 function styles() {
-  return gulp.src(`./src/font-flex/index.scss`)
+  return gulp.src(`./src/flex-prop/index.scss`)
     .pipe(gulp_plumber({
       errorHandler: gulp_notify.onError(function (error) {
         return {
@@ -52,8 +52,8 @@ gulp.task('watch', function() {
     notify: false
   });
 
-  gulp.watch(`./src/font-flex/index.html}`).on('change', gulp.series(html, reload));
-  gulp.watch(`./src/font-flex/index.scss`).on('change', gulp.series(styles));
+  gulp.watch(`./src/flex-prop/index.html}`).on('change', gulp.series(html, reload));
+  gulp.watch(`./src/flex-prop/index.scss`).on('change', gulp.series(styles));
 
 });
 
